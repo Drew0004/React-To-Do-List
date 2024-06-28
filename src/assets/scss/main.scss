@@ -1,0 +1,11 @@
+@use "partials/variables.scss" as *;
+@use "partials/mixins.scss" as *;
+
+body{
+    background-color: rgb(32, 32, 32);
+}
+
+.my-text-try{
+    color: lightcoral;
+    font-size: 3rem;
+}
