@@ -24,7 +24,7 @@ header{
 .my-button{
     background-color: transparent;
     border: 1px solid rgb(242, 160, 18);
-    transition: 0.2s ease-in-out;
+    transition: 0.1s ease-in-out;
 
     &:hover{
         background-color: rgb(242, 160, 18);
@@ -34,10 +34,10 @@ header{
 
 .my-input{
     border: 1px solid rgb(242, 160, 18);
-    transition: 0.2s ease-in-out;
+    transition: 0.4s ease-in-out;
     &:focus{
         border: transparent;
-        box-shadow: 0 0 5px rgba(424, 160, 18, 0.6);
+        box-shadow: 0 0 8px rgba(424, 160, 18, 0.6);
         outline: none;
     }
 }
@@ -45,4 +45,16 @@ header{
 .task-done{
     text-decoration: line-through;
     color: rgb(255, 119, 0);
+}
+
+.my-delete-button{
+    background-color: transparent;
+    border: 1px solid rgb(242, 55, 18);
+    transition: 0.1s ease-in-out;
+
+    &:hover{
+        background-color: rgb(242, 55, 18);
+        border: transparent;
+    }
+    
 }
