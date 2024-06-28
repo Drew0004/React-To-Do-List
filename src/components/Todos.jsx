@@ -65,8 +65,8 @@ const Todos = () => {
                                         <h5 className={`fw-bold ${elem.done === true ? 'task-done' : 'text-white'}`} key={elem.id}>{elem.task}</h5>
                                     </div>
                                     <div className='col-2 d-flex align-items-center'>
-                                        <button onClick={()=>handleDoneStatus(elem.id)} className='px-3 py-2 my-button rounded-5'><i class="fa-solid fa-check text-white"></i></button>
-                                        <button onClick={()=>removeToDo(elem.id)} className='px-3 py-2 ms-5 my-delete-button rounded-5'><i class="fa-solid fa-trash text-white"></i></button>
+                                        <button onClick={()=>handleDoneStatus(elem.id)} className='px-3 py-2 my-button rounded-5'><i className="fa-solid fa-check text-white"></i></button>
+                                        <button onClick={()=>removeToDo(elem.id)} className='px-3 py-2 ms-5 my-delete-button rounded-5'><i className="fa-solid fa-trash text-white"></i></button>
                                     </div>
                                 </div>
                             </>
