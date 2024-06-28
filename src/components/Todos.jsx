@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { v4 } from 'uuid';
 
 const Todos = () => {
     const [todos, setTodos] = useState(()=>{
@@ -15,7 +16,7 @@ const Todos = () => {
 
         if(e.target.task.value.trim().length > 3){
             const newTask = {
-                id: new Date(Date.now()).getTime().toString(),
+                id: v4(),
                 task: e.target.task.value,
                 done: false
             }
@@ -26,6 +27,8 @@ const Todos = () => {
         }
 
         e.target.task.value = '';
+
+        console.log(todos)
     }
 
     const handleDoneStatus = (id) =>{
