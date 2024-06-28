@@ -1,17 +1,12 @@
 import { useState } from 'react'
-import Card from './Card.jsx'
-import myCards from '../assets/storage/cards.js'
+import Todos from './Todos'
 
 function App() {
   return (
     <>
       <div className="container">
-        <h2 className='text-center my-2  my-text-try'>Hi</h2>
-        <div className="row">
-            {myCards.map((singleCard)=>{
-                return <Card key={singleCard.id} {...singleCard}/>
-            })}
-        </div>
+            <h3 className='text-white my-5 my-font'>All todos for today &#128640;</h3>
+            <Todos/>
       </div>
     </>
   )

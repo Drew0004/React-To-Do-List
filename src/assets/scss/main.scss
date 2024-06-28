@@ -5,7 +5,44 @@ body{
     background-color: rgb(32, 32, 32);
 }
 
-.my-text-try{
-    color: lightcoral;
-    font-size: 3rem;
+.my-font{
+    font-family: 'Druk wide bold';
+}
+
+.orange-text{
+    color: rgb(242, 160, 18);
+}
+
+header{
+    background-color: rgb(37, 37, 37);
+}
+
+.todos-box{
+    border: 1px solid rgb(242, 160, 18);
+}
+
+.my-button{
+    background-color: transparent;
+    border: 1px solid rgb(242, 160, 18);
+    transition: 0.2s ease-in-out;
+
+    &:hover{
+        background-color: rgb(242, 160, 18);
+        border: transparent;
+    }
+}
+
+.my-input{
+    border: 1px solid rgb(242, 160, 18);
+    transition: 0.2s ease-in-out;
+    &:focus{
+        border: transparent;
+        box-shadow: 0 0 5px rgba(424, 160, 18, 0.6);
+        outline: none;
+    }
+}
+
+.task-done{
+    text-decoration: line-through;
+    color: rgb(255, 119, 0);
 }
