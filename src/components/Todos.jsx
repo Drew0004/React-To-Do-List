@@ -1,7 +1,14 @@
-import { useState, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 const Todos = () => {
-    const [todos, setTodos] = useState([])
+    const [todos, setTodos] = useState(()=>{
+        const savedTodos = localStorage.getItem('todos');
+        return savedTodos ? JSON.parse(savedTodos) : [];
+    })
+
+    useEffect(()=>{
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }, [todos])
 
     const handleNewTask = (e) =>{
         e.preventDefault()
@@ -17,7 +24,6 @@ const Todos = () => {
                 newTask
             ]);
         }
-
 
         e.target.task.value = '';
     }
