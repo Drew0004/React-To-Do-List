@@ -27,8 +27,6 @@ const Todos = () => {
         }
 
         e.target.task.value = '';
-
-        console.log(todos)
     }
 
     const handleDoneStatus = (id) =>{
