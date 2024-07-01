@@ -60,12 +60,12 @@ const Todos = () => {
                 {
                     todos.length === 0 ? 
                     <h3 className='my-font text-white'>Sembra non ci siano Tasks per ora...</h3> : 
-                    todos.map((elem)=>{
+                    todos.map((elem, index)=>{
                         return (
                             <>
                                 <div className="row justify-content-between align-items-center border-bottom py-3">
                                     <div className="col-8">
-                                        <h5 className={`fw-bold ${elem.done === true ? 'task-done' : 'text-white'}`} key={elem.id}>{elem.task}</h5>
+                                        <h5 className={`fw-bold ${elem.done === true ? 'task-done' : 'text-white'}`} key={elem.id}>{index + 1}{')'} {elem.task}</h5>
                                     </div>
                                     <div className='col-2 d-flex align-items-center'>
                                         <button onClick={()=>handleDoneStatus(elem.id)} className='px-3 py-2 my-button rounded-5'><i className="fa-solid fa-check text-white"></i></button>
