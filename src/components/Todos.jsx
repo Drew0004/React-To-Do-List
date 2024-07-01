@@ -49,7 +49,7 @@ const Todos = () => {
     return (
         <>
             <form className="row justify-content-between align-items-center my-5" onSubmit={handleNewTask}>
-                <div className="col-8">
+                <div className="col-8 my-4">
                     <input className='rounded-4 w-100 py-2 px-4 my-input' type="text" name='task' placeholder='Add a new task...' />
                 </div>
                 <div className="col-auto">
@@ -64,12 +64,12 @@ const Todos = () => {
                         return (
                             <>
                                 <div className="row justify-content-between align-items-center border-bottom py-3">
-                                    <div className="col-8">
+                                    <div className="col-xl-8 col-sm-12">
                                         <h5 className={`fw-bold ${elem.done === true ? 'task-done' : 'text-white'}`} key={elem.id}>{index + 1}{')'} {elem.task}</h5>
                                     </div>
-                                    <div className='col-2 d-flex align-items-center'>
-                                        <button onClick={()=>handleDoneStatus(elem.id)} className='px-3 py-2 my-button rounded-5'><i className="fa-solid fa-check text-white"></i></button>
-                                        <button onClick={()=>removeToDo(elem.id)} className='px-3 py-2 ms-5 my-delete-button rounded-5'><i className="fa-solid fa-trash text-white"></i></button>
+                                    <div className='col-xl-2 col-sm-12 d-flex align-items-center'>
+                                        <button onClick={()=>handleDoneStatus(elem.id)} className='px-3 py-2 my-button rounded-5 my-2'><i className="fa-solid fa-check text-white"></i></button>
+                                        <button onClick={()=>removeToDo(elem.id)} className='px-3 py-2 ms-5 my-delete-button rounded-5 my-2'><i className="fa-solid fa-trash text-white"></i></button>
                                     </div>
                                 </div>
                             </>
