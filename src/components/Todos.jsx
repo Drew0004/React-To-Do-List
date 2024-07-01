@@ -14,7 +14,7 @@ const Todos = () => {
     const handleNewTask = (e) =>{
         e.preventDefault()
 
-        if(e.target.task.value.trim().length > 3){
+        if(e.target.task.value.trim().length >= 1){
             const newTask = {
                 id: v4(),
                 task: e.target.task.value,
