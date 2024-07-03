@@ -40,8 +40,11 @@ const Todos = () => {
     }
 
     const removeToDo = (id) =>{
-        const removedTodo = todos.filter((el) => el.id !== id)
-        setTodos(removedTodo)
+        const userConfirmAlert = window.confirm("Sei sicuro? L'azione è irreversibile.")
+        if(userConfirmAlert){
+            const removedTodo = todos.filter((el) => el.id !== id)
+            setTodos(removedTodo)
+        }
     }
 
     return (
