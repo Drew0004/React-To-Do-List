@@ -75,7 +75,7 @@ const Todos = () => {
                                 <div className="row justify-content-between align-items-center border-bottom py-3">
                                     <div className="col-xl-8 col-sm-12 d-flex justify-content-between" key={elem.id}>
                                         <h5 className={`fw-bold ${elem.done === true ? 'task-done' : 'text-white'}`}>{index + 1}{')'} {elem.task}</h5>
-                                        {elem.date ? <h6 className={`my-date ${elem.done === true ? 'task-done' : 'text-white'}`}><i className="fa-regular my-date fa-calendar-days me-2"></i> {elem.date}</h6> : ''}
+                                        {elem.date ? <h6 className={`my-date m-0 ${elem.done === true ? 'task-done' : 'text-white'}`}><i className="m-0 fa-regular my-date fa-calendar-days me-2"></i> {elem.date}</h6> : ''}
                                     </div>
                                     <div className='col-xl-2 col-sm-12 d-flex align-items-center'>
                                         <button onClick={()=>handleDoneStatus(elem.id)} className='px-3 py-2 my-button rounded-5 my-2'><i className="fa-solid fa-check text-white"></i></button>
