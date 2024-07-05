@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { v4 } from 'uuid';
+import { format } from 'date-fns';
 
 const Todos = () => {
     const [todos, setTodos] = useState(()=>{
@@ -14,10 +15,13 @@ const Todos = () => {
     const handleNewTask = (e) =>{
         e.preventDefault()
 
+        const formatDate = e.target.date.value ? format(new Date(e.target.date.value), 'dd/MM/yyyy') : '';
+
         if(e.target.task.value.trim().length >= 1){
             const newTask = {
                 id: v4(),
                 task: e.target.task.value,
+                date: formatDate,
                 done: false
             }
             setTodos([
@@ -27,6 +31,7 @@ const Todos = () => {
         }
 
         e.target.task.value = '';
+        e.target.date.value = '';
     }
 
     const handleDoneStatus = (id) =>{
@@ -53,6 +58,9 @@ const Todos = () => {
                 <div className="col-8 my-4">
                     <input className='rounded-4 w-100 py-2 px-4 my-input' type="text" name='task' placeholder='Add a new task...' />
                 </div>
+                <div className="col-2 my-4">
+                    <input className='rounded-4 w-100 py-2 px-4 my-input' type="date" name='date'/>
+                </div>
                 <div className="col-auto">
                     <button className='my-button text-white rounded-5 px-4 py-2 fw-bold'>Aggiungi task</button>
                 </div>
@@ -65,8 +73,9 @@ const Todos = () => {
                         return (
                             <>
                                 <div className="row justify-content-between align-items-center border-bottom py-3">
-                                    <div className="col-xl-8 col-sm-12">
-                                        <h5 className={`fw-bold ${elem.done === true ? 'task-done' : 'text-white'}`} key={elem.id}>{index + 1}{')'} {elem.task}</h5>
+                                    <div className="col-xl-8 col-sm-12 d-flex justify-content-between" key={elem.id}>
+                                        <h5 className={`fw-bold ${elem.done === true ? 'task-done' : 'text-white'}`}>{index + 1}{')'} {elem.task}</h5>
+                                        {elem.date ? <h6 className={`my-date ${elem.done === true ? 'task-done' : 'text-white'}`}><i className="fa-regular my-date fa-calendar-days me-2"></i> {elem.date}</h6> : ''}
                                     </div>
                                     <div className='col-xl-2 col-sm-12 d-flex align-items-center'>
                                         <button onClick={()=>handleDoneStatus(elem.id)} className='px-3 py-2 my-button rounded-5 my-2'><i className="fa-solid fa-check text-white"></i></button>

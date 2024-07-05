@@ -42,6 +42,10 @@ header{
     }
 }
 
+.my-date{
+    color: rgba($color: #ffffff, $alpha: 0.7);
+}
+
 .task-done{
     text-decoration: line-through;
     color: rgb(14, 206, 23);
