@@ -55,10 +55,10 @@ const Todos = () => {
     return (
         <>
             <form className="row justify-content-between align-items-center my-5" onSubmit={handleNewTask}>
-                <div className="col-8 my-4">
+                <div className="col-xl-8 col-sm-12 my-4">
                     <input className='rounded-4 w-100 py-2 px-4 my-input' type="text" name='task' placeholder='Add a new task...' />
                 </div>
-                <div className="col-2 my-4">
+                <div className="col-xl-2 col-6 my-4">
                     <input className='rounded-4 w-100 py-2 px-4 my-input' type="date" name='date'/>
                 </div>
                 <div className="col-auto">
