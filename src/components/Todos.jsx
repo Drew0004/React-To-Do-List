@@ -69,7 +69,7 @@ const Todos = () => {
                 <div className='todos-box py-3 px-5'>
                     {
                         todos.length === 0 ? 
-                        <h3 className='my-font text-white'>Sembra non ci siano Tasks per ora...</h3> : 
+                        <h3 className='my-font text-white py-5'>Sembra non ci siano Tasks per ora...</h3> : 
                         todos.map((elem, index)=>{
                             return (
                                 <>
