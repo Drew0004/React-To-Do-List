@@ -22,7 +22,7 @@ const Todos = () => {
 
         const formatDate = e.target.date.value ? format(new Date(e.target.date.value), 'dd/MM/yyyy') : '';
 
-        if(e.target.task.value.trim().length >= 1){
+        if(e.target.task.value.trim().length >= 1 && e.target.task.value.trim().length <= 90){
             const newTask = {
                 id: v4(),
                 task: e.target.task.value,
@@ -60,7 +60,7 @@ const Todos = () => {
     const editTask = (e) => {
         e.preventDefault()
 
-        if(e.target.updateTask.value.trim().length >= 1){
+        if(e.target.updateTask.value.trim().length >= 1 && e.target.task.value.trim().length <= 90){
 
             const updatedToDos = todos.map(todo => {
                 if (todo.id === editTaskId) {
