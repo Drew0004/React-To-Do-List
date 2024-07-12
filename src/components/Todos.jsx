@@ -12,6 +12,11 @@ const Todos = () => {
         localStorage.setItem('todos', JSON.stringify(todos));
     }, [todos])
 
+    const [editTaskId, setEditTaskId] = useState(null)
+
+    const [updatedTask, setUptadetTask] = useState('')
+
+
     const handleNewTask = (e) =>{
         e.preventDefault()
 
@@ -52,6 +57,34 @@ const Todos = () => {
         }
     }
 
+    const editTask = (e) => {
+        e.preventDefault()
+
+        if(e.target.updateTask.value.trim().length >= 1){
+
+            const updatedToDos = todos.map(todo => {
+                if (todo.id === editTaskId) {
+                    return { ...todo, task: updatedTask };
+                }
+                return todo;
+            });
+            setTodos(updatedToDos);
+            setEditTaskId(null);
+            setUptadetTask('');
+        }
+    }
+
+    const toggleInput = (id, currentTask) => {
+        setEditTaskId(id);
+        setUptadetTask(currentTask);
+    }
+
+    const cancelEdit = () => {
+        setEditTaskId(null);
+        setUptadetTask('');
+    }
+
+
     return (
         <>
             <form className="row justify-content-between align-items-center my-5" onSubmit={handleNewTask}>
@@ -75,11 +108,26 @@ const Todos = () => {
                                 <>
                                     <div className="row justify-content-between align-items-center border-bottom py-3">
                                         <div className="col-xl-8 col-sm-12 d-flex justify-content-between" key={elem.id}>
-                                            <h5 className={`fw-bold ${elem.done === true ? 'task-done' : 'text-white'}`}>{index + 1}{')'} {elem.task}</h5>
+                                            {editTaskId === elem.id ? 
+                                                <form onSubmit={editTask}>
+                                                    <input
+                                                        className='rounded-4 w-100 py-2 px-4 my-input'
+                                                        type="text"
+                                                        value={updatedTask}
+                                                        onChange={(e) => setUptadetTask(e.target.value)}
+                                                        name='updateTask'
+                                                        placeholder='Aggiorna Task...'
+                                                    />
+                                                    <button type="submit" className='my-4 me-4 my-button text-white rounded-5 px-4 py-2 fw-bold'><i className="fa-solid fa-check text-white"></i></button>
+                                                    <button onClick={() => cancelEdit()} type="submit" className='my-4 my-delete-button text-white rounded-5 px-4 py-2 fw-bold'><i className="fa-solid fa-x text-white"></i></button>
+                                                </form> :
+                                                <h5 className={`fw-bold ${elem.done === true ? 'task-done' : 'text-white'}`}>{index + 1}{')'} {elem.task}</h5>
+                                            }
                                             {elem.date ? <h6 className={`my-date m-0 ${elem.done === true ? 'task-done' : 'text-white'}`}><i className="m-0 fa-regular my-date fa-calendar-days me-2"></i> {elem.date}</h6> : ''}
                                         </div>
-                                        <div className='col-xl-2 col-sm-12 d-flex justify-content-between align-items-center'>
-                                            <button onClick={()=>handleDoneStatus(elem.id)} className='px-3 py-2 my-button rounded-5 my-2 mx-4'><i className="fa-solid fa-check text-white"></i></button>
+                                        <div className='col-xl-3 col-sm-12 d-flex justify-content-between align-items-center'>
+                                            <button onClick={()=>toggleInput(elem.id, elem.task)} className='px-3 py-2 my-button rounded-5 my-2'><i className="fa-solid fa-pen text-white"></i></button>
+                                            <button onClick={()=>handleDoneStatus(elem.id)} className='px-3 py-2 my-button rounded-5 my-2 mx-5'><i className="fa-solid fa-check text-white"></i></button>
                                             <button onClick={()=>removeToDo(elem.id)} className='px-3 py-2 my-delete-button rounded-5 my-2'><i className="fa-solid fa-trash text-white"></i></button>
                                         </div>
                                     </div>
