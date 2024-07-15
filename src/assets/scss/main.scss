@@ -66,6 +66,17 @@ header{
     }
 }
 
+.my-input-transparent{
+    border: 1px solid rgba(242, 160, 18, 0.3);
+    background: transparent;
+    color: white;
+    &:focus{
+        border: transparent;
+        box-shadow: 0 0 8px rgba(424, 160, 18, 0.6);
+        outline: none;
+    }
+}
+
 .my-date{
     color: rgba($color: #ffffff, $alpha: 0.7);
 }

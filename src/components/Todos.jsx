@@ -60,7 +60,7 @@ const Todos = () => {
     const editTask = (e) => {
         e.preventDefault()
 
-        if(e.target.updateTask.value.trim().length >= 1 && e.target.task.value.trim().length <= 90){
+        if(e.target.updateTask.value.trim().length >= 1 && e.target.updateTask.value.trim().length <= 90){
 
             const updatedToDos = todos.map(todo => {
                 if (todo.id === editTaskId) {
@@ -111,7 +111,7 @@ const Todos = () => {
                                             {editTaskId === elem.id ? 
                                                 <form onSubmit={editTask}>
                                                     <input
-                                                        className='rounded-4 w-100 py-2 px-4 my-input'
+                                                        className='rounded-4 w-100 py-2 px-4 my-input-transparent'
                                                         type="text"
                                                         value={updatedTask}
                                                         onChange={(e) => setUptadetTask(e.target.value)}
