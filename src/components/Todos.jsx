@@ -14,7 +14,9 @@ const Todos = () => {
 
     const [editTaskId, setEditTaskId] = useState(null)
 
-    const [updatedTask, setUptadetTask] = useState('')
+    const [updatedTask, setUptadetTask] = useState({
+        ...todos
+    })
 
 
     const handleNewTask = (e) =>{
@@ -64,7 +66,11 @@ const Todos = () => {
 
             const updatedToDos = todos.map(todo => {
                 if (todo.id === editTaskId) {
-                    return { ...todo, task: updatedTask };
+                    return { 
+                        ...todo, 
+                        task: e.target.updateTask.value, 
+                        date: e.target.updateDate.value ? format(new Date(e.target.updateDate.value), 'dd/MM/yyyy' ) : '' 
+                    };
                 }
                 return todo;
             });
@@ -107,24 +113,34 @@ const Todos = () => {
                             return (
                                 <>
                                     <div className="row justify-content-between align-items-center border-bottom py-3">
-                                        <div className="col-xl-8 col-sm-12 d-flex justify-content-between" key={elem.id}>
+                                        <div className="col-xl-8 col-sm-12 d-flex justify-content-between align-items-center" key={elem.id}>
                                             {editTaskId === elem.id ? 
-                                                <form onSubmit={editTask}>
-                                                    <input
-                                                        className='rounded-4 w-100 py-2 px-4 my-input-transparent'
-                                                        type="text"
-                                                        value={updatedTask}
-                                                        onChange={(e) => setUptadetTask(e.target.value)}
-                                                        name='updateTask'
-                                                        placeholder='Aggiorna Task...'
-                                                    />
+                                                <form className='col-xl-5 col-sm-12' onSubmit={editTask}>
+                                                    <div className="row">
+                                                        <div className='col-6'>
+                                                            <input
+                                                                className='rounded-4 w-100 py-2 px-4 my-input-transparent'
+                                                                type="text"
+                                                                value={updatedTask}
+                                                                onChange={(e) => setUptadetTask(e.target.value)}
+                                                                name='updateTask'
+                                                                placeholder='Aggiorna Task...'
+                                                            />
+                                                        </div>
+                                                        <div className="col-6">
+                                                            <input className='rounded-4 w-100 py-2 px-4 my-input' type="date" name='updateDate' defaultValue={elem.date}/>
+                                                        </div>
+                                                    </div>
                                                     <button type="submit" className='my-4 me-4 my-button text-white rounded-5 px-4 py-2 fw-bold'><i className="fa-solid fa-check text-white"></i></button>
                                                     <button onClick={() => cancelEdit()} type="submit" className='my-4 my-delete-button text-white rounded-5 px-4 py-2 fw-bold'><i className="fa-solid fa-x text-white"></i></button>
                                                 </form> :
-                                                <h5 className={`fw-bold ${elem.done === true ? 'task-done' : 'text-white'}`}>{index + 1}{')'} {elem.task}</h5>
+                                                <div className='col-xl-8 col-sm-12 d-xl-flex d-sm-block flex-wrap justify-content-between align-items-center'>
+                                                    <h5 className={`fw-bold my-3 ${elem.done === true ? 'task-done' : 'text-white'}`}>{index + 1}{')'} {elem.task}</h5>
+                                                    {elem.date ? <h6 className={`my-date m-0 my-3 ${elem.done === true ? 'task-done' : 'text-white'}`}><i className="m-0 fa-regular my-date fa-calendar-days me-2"></i> {elem.date}</h6> : ''}
+                                                </div>
                                             }
-                                            {elem.date ? <h6 className={`my-date m-0 ${elem.done === true ? 'task-done' : 'text-white'}`}><i className="m-0 fa-regular my-date fa-calendar-days me-2"></i> {elem.date}</h6> : ''}
                                         </div>
+                                        
                                         <div className='col-xl-3 col-sm-12 d-flex justify-content-between align-items-center'>
                                             <button onClick={()=>toggleInput(elem.id, elem.task)} className='px-3 py-2 my-button rounded-5 my-2'><i className="fa-solid fa-pen text-white"></i></button>
                                             <button onClick={()=>handleDoneStatus(elem.id)} className='px-3 py-2 my-button rounded-5 my-2 mx-5'><i className="fa-solid fa-check text-white"></i></button>
