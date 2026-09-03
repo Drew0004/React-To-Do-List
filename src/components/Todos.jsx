@@ -90,16 +90,29 @@ const Todos = () => {
         setUptadetTask('');
     }
 
+    const onDeleteTasks = () =>{
+        const userConfirmAlert = window.confirm("Sei sicuro di voler cancellare tutti i tasks? L'azione è irreversibile.")
+        if(userConfirmAlert){
+            setTodos([])
+        }
+    }
+
 
     return (
         <>
-            <form className="row justify-content-between align-items-center my-5" onSubmit={handleNewTask}>
-                <div className="col-xl-8 col-sm-12 my-4">
+            <form className="row align-items-center my-5" onSubmit={handleNewTask}>
+                <div className="col-xl-6 col-sm-12 my-4">
                     <input className='rounded-4 w-100 py-2 px-4 my-input' type="text" name='task' placeholder='Add a new task...' />
                 </div>
-                <div className="col-xl-2 col-6 my-4">
+                <div className="col-xl-3 col-6 my-4">
                     <input className='rounded-4 w-100 py-2 px-4 my-input' type="date" name='date'/>
                 </div>
+                {
+                    todos.length > 0 &&
+                    <div className="col-auto">
+                        <button type='button' onClick={onDeleteTasks} className='px-3 py-2 my-button rounded-5 my-2'><i className="fa-solid fa-trash text-white"></i></button>
+                    </div>
+                }
                 <div className="col-auto">
                     <button className='my-button text-white rounded-5 px-4 py-2 fw-bold'>Aggiungi task</button>
                 </div>
@@ -111,11 +124,10 @@ const Todos = () => {
                         <h3 className='my-font text-white py-5'>Sembra non ci siano Tasks per ora...</h3> : 
                         todos.map((elem, index)=>{
                             return (
-                                <>
-                                    <div className="row justify-content-between align-items-center border-bottom py-3">
-                                        <div className="col-xl-8 col-sm-12 d-flex justify-content-between align-items-center" key={elem.id}>
+                                <div className="row justify-content-between align-items-center border-bottom py-3" key={elem.id}>
+                                        <div className="col-xl-8 col-sm-12 d-flex justify-content-between align-items-center">
                                             {editTaskId === elem.id ? 
-                                                <form className='col-xl-5 col-sm-12' onSubmit={editTask}>
+                                                <form className='col-xl-12 col-sm-12' onSubmit={editTask}>
                                                     <div className="row">
                                                         <div className='col-6'>
                                                             <input
@@ -132,7 +144,7 @@ const Todos = () => {
                                                         </div>
                                                     </div>
                                                     <button type="submit" className='my-4 me-4 my-button text-white rounded-5 px-4 py-2 fw-bold'><i className="fa-solid fa-check text-white"></i></button>
-                                                    <button onClick={() => cancelEdit()} type="submit" className='my-4 my-delete-button text-white rounded-5 px-4 py-2 fw-bold'><i className="fa-solid fa-x text-white"></i></button>
+                                                    <button onClick={() => cancelEdit()} type="button" className='my-4 my-delete-button text-white rounded-5 px-4 py-2 fw-bold'><i className="fa-solid fa-x text-white"></i></button>
                                                 </form> :
                                                 <div className='col-xl-8 col-sm-12 d-xl-flex d-sm-block flex-wrap justify-content-between align-items-center'>
                                                     <h5 className={`fw-bold my-3 ${elem.done === true ? 'task-done' : 'text-white'}`}>{index + 1}{')'} {elem.task}</h5>
@@ -140,14 +152,15 @@ const Todos = () => {
                                                 </div>
                                             }
                                         </div>
-                                        
-                                        <div className='col-xl-3 col-sm-12 d-flex justify-content-between align-items-center'>
-                                            <button onClick={()=>toggleInput(elem.id, elem.task)} className='px-3 py-2 my-button rounded-5 my-2'><i className="fa-solid fa-pen text-white"></i></button>
-                                            <button onClick={()=>handleDoneStatus(elem.id)} className='px-3 py-2 my-button rounded-5 my-2 mx-5'><i className="fa-solid fa-check text-white"></i></button>
-                                            <button onClick={()=>removeToDo(elem.id)} className='px-3 py-2 my-delete-button rounded-5 my-2'><i className="fa-solid fa-trash text-white"></i></button>
-                                        </div>
-                                    </div>
-                                </>
+                                        {
+                                            editTaskId !== elem.id &&
+                                            <div className='col-xl-3 col-sm-12 d-flex justify-content-between align-items-center'>
+                                                <button onClick={()=>toggleInput(elem.id, elem.task)} className='px-3 py-2 my-button rounded-5 my-2'><i className="fa-solid fa-pen text-white"></i></button>
+                                                <button onClick={()=>handleDoneStatus(elem.id)} className='px-3 py-2 my-button rounded-5 my-2 mx-5'><i className="fa-solid fa-check text-white"></i></button>
+                                                <button onClick={()=>removeToDo(elem.id)} className='px-3 py-2 my-delete-button rounded-5 my-2'><i className="fa-solid fa-trash text-white"></i></button>
+                                            </div>
+                                        }
+                                </div>
                             )
                         })
                         
